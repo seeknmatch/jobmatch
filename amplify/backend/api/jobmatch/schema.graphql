@@ -1,0 +1,69 @@
+# This "input" configures a global authorization rule to enable public access to
+# all models in this schema. Learn more about authorization rules here: https://docs.amplify.aws/cli/graphql/authorization-rules
+input AMPLIFY { globalAuthRule: AuthRule = { allow: public } } # FOR TESTING ONLY!
+
+type Todo @model {
+  id: ID!
+  name: String!
+  description: String
+}
+# User Profile Model
+type UserProfile @model {
+  id: ID!
+  userId: String!
+  fullName: String!
+  email: String!
+  phoneNumber: String
+  city: String
+  state: String
+  professionalSummary: String
+  education: String
+  experience: String
+  publications: String
+  achievements: String
+  profilePhoto: String # URL to the photo
+  createdAt: AWSDateTime
+  updatedAt: AWSDateTime
+}
+
+# Job Model
+type Job @model {
+  id: ID!
+  title: String!
+  description: String
+  location: String!
+  employerId: String!
+  jobType: String
+  createdAt: AWSDateTime
+  updatedAt: AWSDateTime
+}
+
+# Like Model (to track likes between candidates and jobs)
+type Like @model {
+  id: ID!
+  userId: String!
+  jobId: String!
+  createdAt: AWSDateTime
+}
+
+# Match Model (to track matches between candidates and employers)
+type Match @model {
+  id: ID!
+  candidateId: String!
+  employerId: String!
+  jobId: String!
+  matchedAt: AWSDateTime
+}
+
+# Event Model (for job fairs or events posted by employers)
+type Event @model {
+  id: ID!
+  title: String!
+  description: String
+  date: AWSDateTime!
+  location: String!
+  employerId: String!
+  createdAt: AWSDateTime
+  updatedAt: AWSDateTime
+}
+
